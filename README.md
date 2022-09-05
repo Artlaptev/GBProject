@@ -6,4 +6,4 @@
 Александр - https://github.com/AleksandrUshenin
 Алексей - https://github.com/AlexBurkh
 
-(Диаграмма)[https://github.com/temkalap/GBProject/PhoneBook/cd.drawio]
+(Диаграмма)[https://github.com/temkalap/GBProject/blob/main/PhoneBook/cd.drawio]
