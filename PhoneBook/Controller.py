@@ -28,20 +28,18 @@ class Controller:
             if id_Command == 1:
                 id = int(self.ConPrint.Read_Line('Введите id: '))
                 result = self.Book.get_by_id(id)
-                #print(result.id)
+                self.ConPrint.Print_List_Book(result)
             else:
                 surname = self.ConPrint.Read_Line('Введите фамилию: ')
                 result = self.Book.get_by_surname(surname)
-                #print(result.id)
+                for user in result:
+                    self.ConPrint.Print_List_Book(user)        
         except:
             print('error')
             return
 
-        if result != [] or result != None:
-            self.ConPrint.Print_List_Book(result)
-            return
-            
-        print('не нашел')
+        if result == [] and result == None:
+            print('не нашел')
 
     def Add_User(self):
         name =   self.ConPrint.Read_Line('Введите имя ')
