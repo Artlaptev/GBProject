@@ -2,8 +2,8 @@
 под форматами понимаем структуру файлов, например:
 - в файле на одной строке хранится одна часть записи, пустая строка - разделитель
 
-Артем-github.com/temkalap
-Александр-github.com/AleksandrUshenin
-Алексей-https://github.com/AlexBurkh
+Артем - https://github.com/temkalap
+Александр - https://github.com/AleksandrUshenin
+Алексей - https://github.com/AlexBurkh
 
-(Диаграмма)[]
+(Диаграмма)[https://github.com/temkalap/GBProject/blob/main/PhoneBook/cd.drawio]
