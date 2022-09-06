@@ -1,9 +1,9 @@
-#from curses import intrflush
 
-#from curses.ascii import US
+from os import lseek
 
 
 class UserInterface:
+
     def PrintMenu():
         con = Console()
 
@@ -12,13 +12,19 @@ class UserInterface:
         con.WriteLine('======================================================')
         con.WriteLine('\n\tКоманды:\n\t    1 - добавить\n\t    2 - вывести на экран список\n\t    3 - удолить\n\t    0 - выход')
 
-    def ReadLine():
+    def ReadLine(line = '\n\tВведите номер команды:'):
         con = Console()
-        return con.ReadLine('\n\tВведите гомер команды:')
+        return con.ReadLine(line)
     
     def PrintListBook(self, lisrUsers):
-        for line in lisrUsers():
-            self.ReadLine(line)
+        con = Console()
+        con.WriteLine('id {} name {} patronymic {} surname {} number {}'.format(
+            lisrUsers.id, lisrUsers.name, lisrUsers.patronymic, lisrUsers.surname, lisrUsers.number))
+        #print(res[i].id)
+
+    def Print_In_Display(line:str):
+        con = Console()
+        con.WriteLine(line)
 
 class Console:
     def WriteLine(self, line:str):
