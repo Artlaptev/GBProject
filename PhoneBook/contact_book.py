@@ -1,6 +1,7 @@
 from contact import contact
 
 class contact_book:
+    _free_ids = []
     _next_id : int = 0
     _contacts = []
 
@@ -8,8 +9,15 @@ class contact_book:
                           patronymic : str, 
                           surname    : str, 
                           number     : str):
-        self._contacts.append(contact(self._next_id, name, patronymic, surname, number))
-        self._next_id += 1
+        id = None
+        if len(self._free_ids) != 0:
+            id = self._free_ids[0]
+            self._free_ids.remove(id)
+        else:
+            id = self._next_id
+            self._next_id += 1
+        self._contacts.append(contact(id, name, patronymic, surname, number))
+        
     
     def get_by_id(self, id : int):
         for item in self._contacts:
@@ -34,6 +42,7 @@ class contact_book:
     def delete_contact(self, id : int):
         for item in self._contacts:
             if item.id == id:
+                self._free_ids.append(item.id)
                 self._contacts.remove(item)
     
     def get_sorted(self):
