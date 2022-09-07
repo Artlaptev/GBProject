@@ -1,6 +1,7 @@
-from contact import contact
-from contact_book import contact_book
+# from contact import contact
+# from contact_book import contact_book
 import json
+import xml.etree.ElementTree as ET
 
 from abc import ABC, abstractmethod
 
@@ -44,7 +45,22 @@ class JsonHandler(Handler):
 
 class XMLHandler(Handler):
     def importin(self):
-        pass
+        tree=ET.parse('test.xml')
+        root=tree.getroot()
+        for i in root:
+            test=i.getchildren()
+            for j in test:
+                test1=j.text
+                test1=test1
+
 
     def export(self):
-        pass
+        data=ET.Element('CONTACTLIST')
+
+        contact=ET.SubElement(data,'CONTACT')
+
+
+
+test=XMLHandler
+content=test.importin(test)
+print(content)
