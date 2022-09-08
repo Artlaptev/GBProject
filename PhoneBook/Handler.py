@@ -49,7 +49,7 @@ class XMLHandler():
                 dict_atrs[atr.tag] = atr.text
             print(dict_atrs)
             create_contact_by_dictionary(book, dict_atrs)
-        return book
+        return book.get_unsorted()
 
     def export(self, lst):
         data = ET.Element('CONTACTLIST')
