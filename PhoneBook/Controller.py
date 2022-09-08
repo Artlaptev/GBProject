@@ -44,8 +44,8 @@ class Controller:
         #вместо data будет реализация  
 
     def StartLoad(self):
-        self._Book._contacts = self._XMLLogg.importin()
         self.Do_Logger(1, 'Файл загружен при запуске приложения')
+        return self._XMLLogg.importin()
 
     def Search(self, id_Command):
         result = None

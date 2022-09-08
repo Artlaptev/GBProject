@@ -10,7 +10,9 @@ class Program:
 
     def Run(self):
         Do = True
-        self._Control.StartLoad()
+        
+        data = self._Control.StartLoad()
+        self._Book._contacts = data._contacts
 
         while Do:
             self._ConPrint.Print_Menu()
