@@ -12,7 +12,7 @@ class Program:
         Do = True
         
         data = self._Control.StartLoad()
-        self._Book._contacts = data._contacts
+        self._Book._contacts = data
 
         while Do:
             self._ConPrint.Print_Menu()
