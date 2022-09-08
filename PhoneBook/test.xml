@@ -1,14 +1,1 @@
-<CONTACTLIST>
-    <CONTACT>
-        <id>0</id><name>1</name><patronymic>1</patronymic><surname>1</surname><number>1</number>
-    </CONTACT>
-    <CONTACT>
-        <id>1</id><name>2</name><patronymic>2</patronymic><surname>2</surname><number>2</number>
-    </CONTACT>
-    <CONTACT>
-        <id>2</id><name>3</name><patronymic>3</patronymic><surname>3</surname><number>3</number>
-    </CONTACT>
-    <CONTACT>
-        <id>3</id><name>4</name><patronymic>4</patronymic><surname>4</surname><number>4</number>
-    </CONTACT>
-</CONTACTLIST>
+<CONTACTLIST />

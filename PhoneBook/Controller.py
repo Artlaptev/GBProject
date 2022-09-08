@@ -44,8 +44,8 @@ class Controller:
         #вместо data будет реализация  
 
     def StartLoad(self):
-        self._Book._contacts = self._XMLLogg.importin()
         self.Do_Logger(1, 'Файл загружен при запуске приложения')
+        return self._XMLLogg.importin()
 
     def Search(self, id_Command):
         result = None
@@ -69,7 +69,6 @@ class Controller:
             self.Do_Logger(3, "Ошибка поиска! Тип поиска: {}".format(id_Command))
             return
             
-        self._Con_Print.Read_Line('')
 
     def Search_correctly(self, result):
         if result == [] or result == None:
@@ -94,10 +93,12 @@ class Controller:
 
     def Delite(self):
         id = self._Con_Print.Read_Line('Введите id для удоления: ')
-        try:
-            self._Book.delete_contact(int(id))
+
+        result = self._Book.delete_contact(int(id))
+
+        if result:
             self.Do_Logger(1, 'Удален контакт id: {}'.format(id))
-        except:
+        else:
             self._Con_Print.Print_In_Display('error')
             self.Do_Logger(3, 'Ошибка при удалении контакта по id: {}'.format(id))
 
