@@ -15,20 +15,28 @@ class Controller:
     def Load_Data(self):
         self._Con_Print.Print_Menu_Load_Save(1)
         res = self._Con_Print.Read_Line()
-        if res == '1': 
-            return
-        if res == '2':
-            return
-        #вместо return будет реализация  
 
-    def Load_Save(self):
+        self.Do_Logger(1, f'Загружено через {res} - способ')
+
+        if res == '1': 
+            data = 'вызов метода()'
+            return data
+        if res == '2':
+            data = 'вызов метода()'
+            return data
+        #вместо data будет реализация  
+
+    def Save_Data(self, Book):
         self._Con_Print.Print_Menu_Load_Save(2)
         res = self._Con_Print.Read_Line()
+
         if res == '1': 
-            return
+            data = 'вызов метода(Book)'
         if res == '2':
-            return
-        #вместо return будет реализация  
+            data = 'вызов метода(Book)'
+
+        self.Do_Logger(1, f'Сохранено через {res} - способ')
+        #вместо data будет реализация  
 
     def StartLoad(self):
         self._Book._contacts = []
@@ -76,7 +84,8 @@ class Controller:
         self.Do_Logger(1, 'Добавлен контакт: {}'.format(contact))
 
     def Print_Book(self):
-        res = self._Book.get_unsorted()
+        res = self._Book.get_sorted()
+        #res = self._Book.get_unsorted()
         self._Con_Print.Print_List_Book(res)
 
     def Delite(self):
