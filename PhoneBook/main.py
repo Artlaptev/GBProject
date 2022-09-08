@@ -10,7 +10,7 @@ class Program:
 
     def Run(self):
         Do = True
-        self._Control.StartLoad()
+        #self._Control.StartLoad()
 
         while Do:
             self._ConPrint.Print_Menu()

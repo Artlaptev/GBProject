@@ -34,8 +34,7 @@ class UserInterface:
         self.con.WriteLine('\n\t\t Список контактов: \n')
         self.con.WriteLine('===================================================================================')
         
-        for i in range(len(lisrUsers)):
-            User = lisrUsers[i]
+        for User in lisrUsers:
 
             self.con.WriteLine('\tid: {} name: {} patronymic: {} surname: {} number: {}'.format(
                 User.id, User.name, User.patronymic, User.surname, User.number))
