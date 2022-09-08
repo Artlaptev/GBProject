@@ -4,17 +4,17 @@ from Controller import Controller
 import contact_book 
 
 class Program:
-    Book = contact_book.contact_book()
-    ConPrint = UserInterface()
-    _Control = Controller(Book, ConPrint)
+    _Book = contact_book.contact_book()
+    _ConPrint = UserInterface()
+    _Control = Controller(_Book, _ConPrint)
 
     def Run(self):
         Do = True
         self._Control.StartLoad()
 
         while Do:
-            self.ConPrint.Print_Menu()
-            Do = self.Do_Commands(self.ConPrint.Read_Line())
+            self._ConPrint.Print_Menu()
+            Do = self.Do_Commands(self._ConPrint.Read_Line())
 
     def Do_Commands(self, id_command):
         if id_command == '0':
@@ -30,9 +30,9 @@ class Program:
         elif id_command == '5':
             self._Control.Search(2)
         elif id_command == '6':
-            Book = self._Control.Load_Data()
+            self._Book._contacts = self._Control.Load_Data()
         elif id_command == '7':
-            self._Control.Save_Data(self.Book._contacts)
+            self._Control.Save_Data(self._Book._contacts)
 
         return True
 

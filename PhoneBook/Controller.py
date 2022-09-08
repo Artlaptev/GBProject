@@ -2,11 +2,15 @@ from View import UserInterface
 import contact_book
 from text_logger import text_logger
 
+from Handler import JsonHandler, XMLHandler
+
 class Controller:
 
     _Book = contact_book.contact_book()
     _Con_Print = UserInterface()
     _Logger = text_logger()
+    _JsonLogg = JsonHandler()
+    _XMLLogg = XMLHandler()
 
     def __init__(self, book, conPrint):
         self._Book = book
@@ -19,27 +23,28 @@ class Controller:
         self.Do_Logger(1, f'Загружено через {res} - способ')
 
         if res == '1': 
-            data = 'вызов метода()'
+            data = self._JsonLogg.importin()
             return data
         if res == '2':
-            data = 'вызов метода()'
-            return data
-        #вместо data будет реализация  
+            data = self._XMLLogg.importin()
+            print(data._contacts)
+            return data._contacts
 
-    def Save_Data(self, Book):
+    def Save_Data(self, Booklist):
         self._Con_Print.Print_Menu_Load_Save(2)
         res = self._Con_Print.Read_Line()
 
+        print(type(Booklist))
         if res == '1': 
-            data = 'вызов метода(Book)'
+            self._JsonLogg.export(Booklist)
         if res == '2':
-            data = 'вызов метода(Book)'
+           self._XMLLogg.export(Booklist)
 
         self.Do_Logger(1, f'Сохранено через {res} - способ')
         #вместо data будет реализация  
 
     def StartLoad(self):
-        self._Book._contacts = []
+        self._Book._contacts = self._XMLLogg.importin()
         self.Do_Logger(1, 'Файл загружен при запуске приложения')
 
     def Search(self, id_Command):
