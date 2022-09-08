@@ -6,24 +6,26 @@ import xml.etree.ElementTree as ET
 from abc import ABC, abstractmethod
 
 
-def create_contact_by_dictionary(book, item):
-    book.add_contact(item['name'], item['patronymic'], item['surname'], item['number'])
+def create_contact_by_dictionary(item):
+    cont=contact(int(item['id']),item['name'], item['patronymic'], item['surname'], item['number'])
+    return  cont
+
 
 
 class JsonHandler():
     def importin(self):
-        file = open('test.json')
+        file = open('data\\database.json')
         data = json.load(file)
-        book = contact_book()
+        book = []
         for item in data:
-            create_contact_by_dictionary(book, item)
+            book.append(create_contact_by_dictionary(item))
         return book
 
     def export(contact_list):
         data = []
         for item in contact_list:
             data.append(JsonHandler.get_dict(item))
-        file = open('test.json', 'w')
+        file = open('data\\database.json', 'w')
         json.dump(data, file)
         file.close()
 
@@ -40,16 +42,16 @@ class JsonHandler():
 
 class XMLHandler():
     def importin(self):
-        book = contact_book()
-        tree = ET.parse('test.xml')
+        book = []
+        tree = ET.parse('data\\database.xml')
         root = tree.getroot()
         for contact_xml in root:
             dict_atrs = {}
             for atr in contact_xml:
                 dict_atrs[atr.tag] = atr.text
             print(dict_atrs)
-            create_contact_by_dictionary(book, dict_atrs)
-        return book.get_unsorted()
+            book.append(create_contact_by_dictionary(dict_atrs))
+        return book
 
     def export(self, lst):
         data = ET.Element('CONTACTLIST')
@@ -61,7 +63,7 @@ class XMLHandler():
             self.create_subel(contact, 'surname', item.surname)
             self.create_subel(contact, 'number', item.number)
         dataxml = ET.tostring(data).decode('utf-8')
-        file = open('test.xml', 'w')
+        file = open('data\\database.xml', 'w')
         file.write(dataxml)
 
     def create_subel(self, element, name, value):
@@ -74,3 +76,14 @@ class XMLHandler():
 #handler1 = XMLHandler()
 #handler1.export(book.get_sorted())
 #handler1.importin()
+
+
+# book=[]
+# con1=contact(1,'artem','ram','lap','323125432')
+# con2=contact(2,'ivan','petrovicc','ggg','3231sdfs5432')
+# book.append(con1)
+# book.append(con2)
+# JsonHandler.export(book)
+# handler=JsonHandler()
+# imported_book=handler.importin()
+# print(imported_book)
