@@ -27,8 +27,8 @@ class Controller:
             return data
         if res == '2':
             data = self._XMLLogg.importin()
-            print(data._contacts)
-            return data._contacts
+            print(data)
+            return data
 
     def Save_Data(self, Booklist):
         self._Con_Print.Print_Menu_Load_Save(2)
@@ -63,8 +63,7 @@ class Controller:
 
                 self.Search_correctly(result)
 
-                for user in result:
-                    self._Con_Print.Print_List_Book(user)        
+                self._Con_Print.Print_List_Book(result)        
         except:
             self._Con_Print.Print_In_Display('error')
             self.Do_Logger(3, "Ошибка поиска! Тип поиска: {}".format(id_Command))
