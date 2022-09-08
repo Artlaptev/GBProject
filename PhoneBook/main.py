@@ -11,11 +11,9 @@ class Program:
     def Run(self):
         Do = True
         self._Control.StartLoad()
-        #self.StartLoad()
 
         while Do:
             self.ConPrint.Print_Menu()
-            #UserInterface.PrintMenu()
             Do = self.Do_Commands(self.ConPrint.Read_Line())
 
     def Do_Commands(self, id_command):
@@ -23,22 +21,18 @@ class Program:
             return False
         elif id_command == '1':
             self._Control.Add_User()
-            #self.Add_User()
         elif id_command == '2':
             self._Control.Print_Book()
-            #self.Print_Book()
         elif id_command == '3':
             self._Control.Delite()
-            #self.Delite()
         elif id_command == '4':
             self._Control.Search(1)
-            #self.Search(1) 
         elif id_command == '5':
             self._Control.Search(2)
-            #self.Search(2)
         elif id_command == '6':
-            self._Control.Load_Data()
-            #self.Load_Data()
+            Book = self._Control.Load_Data()
+        elif id_command == '7':
+            self._Control.Save_Data(self.Book._contacts)
 
         return True
 
