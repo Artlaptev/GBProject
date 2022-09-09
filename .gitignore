@@ -3,3 +3,5 @@ test.py
 *.txt
 workspace.xml
 /.idea
+/data
+database*

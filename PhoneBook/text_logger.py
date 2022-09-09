@@ -2,9 +2,9 @@ from datetime import datetime
 import os
 
 class text_logger:
-    _info_log_path = "data/info_log.txt"
-    _warning_log_path = "data/warning_log.txt"
-    _error_log_path = "data/error_log.txt"
+    _info_log_path = "data\\info_log.txt"
+    _warning_log_path = "data\\warning_log.txt"
+    _error_log_path = "data\\error_log.txt"
 
     def __init__(self):
         if not os.path.exists("data"):
