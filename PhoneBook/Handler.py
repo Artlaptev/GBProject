@@ -21,7 +21,7 @@ class JsonHandler():
             book.append(create_contact_by_dictionary(item))
         return book
 
-    def export(contact_list):
+    def export(self, contact_list):
         data = []
         for item in contact_list:
             data.append(JsonHandler.get_dict(item))
@@ -83,6 +83,8 @@ class XMLHandler():
 # con2=contact(2,'ivan','petrovicc','ggg','3231sdfs5432')
 # book.append(con1)
 # book.append(con2)
+# xml=XMLHandler()
+# xml.export(book)
 # JsonHandler.export(book)
 # handler=JsonHandler()
 # imported_book=handler.importin()
