@@ -1,12 +1,12 @@
 from contact import contact
 
 class contact_book:
-    _next_id : int = 0
-    _contacts = []
+    __next_id : int = 0
+    __contacts = []
 
-    def current_max_id(self):
+    def _current_max_id(self):
         max_id = 0
-        for item in self._contacts:
+        for item in self.__contacts:
             if item.id > max_id:
                 max_id = item.id
         return max_id
@@ -15,28 +15,31 @@ class contact_book:
                           patronymic : str, 
                           surname    : str, 
                           number     : str):
-        self._contacts.append(contact(self._next_id, name, patronymic, surname, number))
-        self._next_id += 1
+        self.__contacts.append(contact(self.__next_id, name, patronymic, surname, number))
+        self.__next_id += 1
     
-    def import_contact(self, id : str, 
+    def _import_contact(self, id : str, 
                              name : str, 
                              patronymic : str, 
                              surname : str, 
                              number : str):
-        self._contacts.append(contact(id, name, patronymic, surname, number))
-        self._next_id = id + 1
-        
+        self.__contacts.append(contact(id, name, patronymic, surname, number))
+        self.__next_id = id + 1
+
+    def import_contact_list(self, contact_list):
+        for contact in contact_list:
+            self._import_contact(contact.id, contact.name, contact.patronymic, contact.surname, contact.number)
     
     def get_by_id(self, id : int):
         result = []
-        for item in self._contacts:
+        for item in self.__contacts:
             if item.id == id:
                 result.append(item)
         return result
 
     def get_by_surname(self, surname : str):
         result = []
-        for item in self._contacts:
+        for item in self.__contacts:
             if item.surname == surname:
                 result.append(item)
         return result
@@ -51,22 +54,22 @@ class contact_book:
 
     def delete_contact(self, id : int):
         flag = False
-        for item in self._contacts:
+        for item in self.__contacts:
             if item.id == id:
-                self._contacts.remove(item)
+                self.__contacts.remove(item)
                 flag = True
-        for item in self._contacts[id:]:
+        for item in self.__contacts[id:]:
             item.id -= 1
-        if len(self._contacts) != 0:
-            self._next_id = self.current_max_id() + 1
+        if len(self.__contacts) != 0:
+            self.__next_id = self._current_max_id() + 1
         else:
-            self._next_id = 0
+            self.__next_id = 0
         return flag
     
     def get_sorted(self):
-        return sorted([item for item in self._contacts], key = lambda row: (row.surname,
+        return sorted([item for item in self.__contacts], key = lambda row: (row.surname,
                                                                             row.name,
                                                                             row.patronymic))
 
     def get_unsorted(self):
-        return self._contacts
+        return self.__contacts
