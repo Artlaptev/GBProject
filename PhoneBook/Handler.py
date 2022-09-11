@@ -2,21 +2,24 @@ from contact import contact
 from contact_book import contact_book
 import json
 import xml.etree.ElementTree as ET
+import os.path
 
 from abc import ABC, abstractmethod
 
 
 def create_contact_by_dictionary(item):
-    cont=contact(int(item['id']),item['name'], item['patronymic'], item['surname'], item['number'])
-    return  cont
-
+    cont = contact(int(item['id']), item['name'], item['patronymic'], item['surname'], item['number'])
+    return cont
 
 
 class JsonHandler():
     def importin(self):
-        file = open('data\\database.json')
-        data = json.load(file)
         book = []
+        file_paths = 'data\\database.json'
+        if not os.path.exists(file_paths):
+            return []
+        file = open(file_paths)
+        data = json.load(file)
         for item in data:
             book.append(create_contact_by_dictionary(item))
         return book
@@ -43,7 +46,10 @@ class JsonHandler():
 class XMLHandler():
     def importin(self):
         book = []
-        tree = ET.parse('data\\database.xml')
+        file_paths = 'data\\database.xml'
+        if not os.path.exists(file_paths):
+            return book
+        tree = ET.parse(file_paths)
         root = tree.getroot()
         for contact_xml in root:
             dict_atrs = {}
@@ -70,12 +76,11 @@ class XMLHandler():
         subEL = ET.SubElement(element, name)
         subEL.text = str(value)
 
-
-#handler=JsonHandler()
-#book=handler.importin()
-#handler1 = XMLHandler()
-#handler1.export(book.get_sorted())
-#handler1.importin()
+# handler=JsonHandler()
+# book=handler.importin()
+# handler1 = XMLHandler()
+# handler1.export(book.get_sorted())
+# handler1.importin()
 
 
 # book=[]
